@@ -156,7 +156,6 @@ compute( v , h )
 	float	v, h;
 	{
 	double	temp, s, c, p, d;
-	double	D;
 
 	temp = 0.5 / ( 1.0 + G * h / (v * v) );
 
