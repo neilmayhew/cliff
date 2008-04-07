@@ -35,6 +35,8 @@
 
 #include	<stdio.h>
 #include	<math.h>
+#include	<stdlib.h>
+#include	<unistd.h>
 #include	"pi.h"
 
 #define	G	9.80665
