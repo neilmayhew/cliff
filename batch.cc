@@ -122,7 +122,7 @@ getrange( item , s , e , i )
 			break;
 
 		case 3:
-			return;
+			break;
 
 		default:
 			fputs( "too many items specified\n" , stderr );
@@ -179,7 +179,7 @@ compute( v , h )
 		{
 		double	pert1, pert2;
 		pert1 = d - dist( p * (1. + pval) , v , h );
-		pert1 = d - dist( p * (1. - pval) , v , h );
+		pert2 = d - dist( p * (1. - pval) , v , h );
 		if ( pert1 < 0 || pert2 < 0 )
 			printf( "Not maximal: p+ =% -7.5g  p- =% -7.5g\n" ,
 				pert1 , pert2 );
