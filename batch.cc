@@ -105,7 +105,7 @@ getrange( item , s , e , i )
 		fprintf( stderr, "Enter range of %s: start [end [increment]] ",
 			item );
 
-		if ( !gets( buf ) )
+		if ( !fgets( buf , sizeof(buf) , stdin ) )
 			return( 0 );
 
 		switch ( sscanf( buf , "%f%f%f" , s , e , i ) )
