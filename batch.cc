@@ -48,6 +48,7 @@ int	eopt;
 int	popt;
 float	pval;
 
+int
 main( argc , argv )
 	int	argc;
 	char	*argv[];
@@ -92,6 +93,7 @@ main( argc , argv )
 	exit( 0 );
 	}
 
+int
 getrange( item , s , e , i )
 	char	*item;
 	float	*s, *e, *i;
