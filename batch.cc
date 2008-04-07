@@ -49,7 +49,7 @@ int	getrange();
 
 int	eopt;
 int	popt;
-float	pval;
+double	pval;
 
 int
 main( argc , argv )
@@ -59,9 +59,9 @@ main( argc , argv )
 	extern	int	optind;
 	extern	char	*optarg;
 	int	c;
-	reg	float	h, v;
-	float	vs, ve, vi;
-	float	hs, he, hi;
+	reg	double	h, v;
+	double	vs, ve, vi;
+	double	hs, he, hi;
 
 	while ( (c = getopt( argc , argv , "ep:" )) != EOF )
 		{
@@ -99,7 +99,7 @@ main( argc , argv )
 int
 getrange( item , s , e , i )
 	char	*item;
-	float	*s, *e, *i;
+	double	*s, *e, *i;
 	{
 	char	buf[100];
 
@@ -111,7 +111,7 @@ getrange( item , s , e , i )
 		if ( !fgets( buf , sizeof(buf) , stdin ) )
 			return( 0 );
 
-		switch ( sscanf( buf , "%f%f%f" , s , e , i ) )
+		switch ( sscanf( buf , "%lf%lf%lf" , s , e , i ) )
 			{
 		case EOF:
 		case 0:
@@ -156,7 +156,7 @@ getrange( item , s , e , i )
 
 double
 compute( v , h )
-	float	v, h;
+	double	v, h;
 	{
 	double	temp, s, c, p, d;
 
@@ -194,7 +194,7 @@ compute( v , h )
 
 double
 dist( p , v , h )
-	float	p, v, h;
+	double	p, v, h;
 	{
 	double	c, s;
 
