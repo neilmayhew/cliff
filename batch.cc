@@ -45,6 +45,7 @@
 
 double	compute(), dist();
 double	atof();
+int	getrange();
 
 int	eopt;
 int	popt;
