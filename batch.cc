@@ -37,11 +37,10 @@
 #include	<math.h>
 #include	<stdlib.h>
 #include	<unistd.h>
-#include	"pi.h"
 
 #define	G	9.80665
 
-#define	DEGREES( R )	( (R) / pi * 180.0 )
+#define	DEGREES( R )	( (R) / M_PI * 180.0 )
 
 double	compute(), dist();
 double	atof();
