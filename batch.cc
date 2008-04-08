@@ -49,16 +49,16 @@ int	popt;
 double	pval;
 
 int main(int argc, char* argv[])
-	{
+{
 	int	c;
 	double	h, v;
 	double	vs, ve, vi;
 	double	hs, he, hi;
 
 	while ((c = getopt(argc, argv, "ep:")) != EOF)
-		{
+	{
 		switch (c)
-			{
+		{
 		case 'p':	/* Check perturbations */
 			popt++;
 			pval = atof(optarg);
@@ -66,11 +66,11 @@ int main(int argc, char* argv[])
 		case 'e':	/* Check for algebra errors */
 			eopt++;
 			break;
-			}
 		}
+	}
 
 	for(;;)
-		{
+	{
 		if (!getrange("v", &vs, &ve, &vi))
 			break;
 		if (!getrange("h", &hs, &he, &hi))
@@ -83,17 +83,17 @@ int main(int argc, char* argv[])
 				compute(v, h);
 
 		putchar('\n');
-		}
-
-	exit(0);
 	}
 
+	exit(0);
+}
+
 int getrange(char* item, double* s, double* e, double* i)
-	{
+{
 	char	buf[100];
 
 	for(;;)
-		{
+	{
 		fprintf(stderr, "Enter range of %s: start [end [increment]] ",
 			item);
 
@@ -101,7 +101,7 @@ int getrange(char* item, double* s, double* e, double* i)
 			return 0;
 
 		switch (sscanf(buf, "%lf%lf%lf", s, e, i))
-			{
+		{
 		case EOF:
 		case 0:
 			return 0;
@@ -121,30 +121,30 @@ int getrange(char* item, double* s, double* e, double* i)
 		default:
 			fputs("too many items specified\n", stderr);
 			continue;
-			}
+		}
 
 		if (*s == *e)
-			{
+		{
 			fputs("start = end\n", stderr);
 			continue;
-			}
+		}
 		if (*i == 0.0)
-			{
+		{
 			fputs("zero increment\n", stderr);
 			continue;
-			}
+		}
 		if (*s < *e && *i < 0.0 || *s > *e && *i > 0.0)
-			{
+		{
 			fputs("increment has wrong sign\n", stderr);
 			continue;
-			}
+		}
 
 		return 1;
-		}
 	}
+}
 
 double compute(double v, double h)
-	{
+{
 	double	temp, s, c, p, d;
 
 	temp = 0.5 / (1.0 + G * h / (v * v));
@@ -159,32 +159,32 @@ double compute(double v, double h)
 		v, h, DEGREES(p), d);
 
 	if (eopt)
-		{
+	{
 		double	D;
 		D = dist(p, v, h);
 		if (fabs(D - d) > 1.e-4)
 			printf("Error: D =% -7.5g\n", D);
-		}
+	}
 
 	if (popt)
-		{
+	{
 		double	pert1, pert2;
 		pert1 = d - dist(p * (1. + pval), v, h);
 		pert2 = d - dist(p * (1. - pval), v, h);
 		if (pert1 < 0 || pert2 < 0)
 			printf("Not maximal: p+ =% -7.5g  p- =% -7.5g\n",
 				pert1, pert2);
-		}
-
-	return p;
 	}
 
+	return p;
+}
+
 double dist(double p, double v, double h)
-	{
+{
 	double	c, s;
 
 	s = sin(p);
 	c = cos(p);
 
 	return v * v * c / G * (s + sqrt(s * s + 2. * G * h / v / v));
-	}
+}
