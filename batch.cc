@@ -40,9 +40,9 @@
 
 #define DEGREES(R) ((R) / M_PI * 180.0)
 
-double compute(), dist();
-double atof();
-int getrange();
+int getrange(char* item, double* s, double* e, double* i);
+double compute(double v, double h);
+double dist(double p, double v, double h);
 
 int eopt;
 int popt;

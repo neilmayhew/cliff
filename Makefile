@@ -1,11 +1,11 @@
 
-#	$Id: Makefile,v 1.3 2008-04-08 03:22:56 mayhewn Exp $
+#	$Id: Makefile,v 1.4 2008-04-08 04:33:16 mayhewn Exp $
 #
 #	Makefile for cliff application
 #
 #	Neil Mayhew - 2008-04-07
 
-CFLAGS = -g -O3 -Wall
+CXXFLAGS = -g -O3 -Wall
 
 all: cliff
 
