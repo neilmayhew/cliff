@@ -36,9 +36,12 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#define G 9.80665
+const double g = 9.80665;
 
-#define DEGREES(R) ((R) / M_PI * 180.0)
+inline double r2d(double r)
+{
+	return r / M_PI * 180.0;
+}
 
 int getrange(char* item, double* s, double* e, double* i);
 double compute(double v, double h);
@@ -148,22 +151,22 @@ double compute(double v, double h)
 {
 	double temp, s, c, p, d;
 
-	temp = 0.5 / (1.0 + G * h / (v * v));
+	temp = 0.5 / (1.0 + g * h / (v * v));
 
 	s = sqrt(temp);
 	p = asin(s);
 
 	c = sqrt(1.0 - temp);
-	d = v * v * c / (G * s);
+	d = v * v * c / (g * s);
 
 	printf("v =% -7.5g  h =% -7.5g  p =% -7.5g  d =% -7.5g\n",
-		v, h, DEGREES(p), d);
+		v, h, r2d(p), d);
 
 	if (eopt)
 	{
-		double D = dist(p, v, h);
-		if (fabs(D - d) > 1.e-4)
-			printf("Error: D =% -7.5g\n", D);
+		double d1 = dist(p, v, h);
+		if (fabs(d - d1) > 1.e-4)
+			printf("Error: D =% -7.5g\n", d1);
 	}
 
 	if (popt)
@@ -183,5 +186,5 @@ double dist(double p, double v, double h)
 	double c = cos(p);
 	double s = sin(p);
 
-	return v * v * c / G * (s + sqrt(s * s + 2. * G * h / v / v));
+	return v * v * c / g * (s + sqrt(s * s + 2. * g * h / v / v));
 }
