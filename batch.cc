@@ -48,10 +48,7 @@ int	eopt;
 int	popt;
 double	pval;
 
-int
-main(argc, argv)
-	int	argc;
-	char	*argv[];
+int main(int argc, char* argv[])
 	{
 	int	c;
 	double	h, v;
@@ -91,10 +88,7 @@ main(argc, argv)
 	exit(0);
 	}
 
-int
-getrange(item, s, e, i)
-	char	*item;
-	double	*s, *e, *i;
+int getrange(char* item, double* s, double* e, double* i)
 	{
 	char	buf[100];
 
@@ -149,9 +143,7 @@ getrange(item, s, e, i)
 		}
 	}
 
-double
-compute(v, h)
-	double	v, h;
+double compute(double v, double h)
 	{
 	double	temp, s, c, p, d;
 
@@ -187,9 +179,7 @@ compute(v, h)
 	return p;
 	}
 
-double
-dist(p, v, h)
-	double	p, v, h;
+double dist(double p, double v, double h)
 	{
 	double	c, s;
 
