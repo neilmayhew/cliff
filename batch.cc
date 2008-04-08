@@ -31,8 +31,6 @@
  *		s*s = 1 / 2(1 + gh/v*v)
  */
 
-#define	reg	register
-
 #include	<stdio.h>
 #include	<math.h>
 #include	<stdlib.h>
@@ -55,10 +53,8 @@ main( argc , argv )
 	int	argc;
 	char	*argv[];
 	{
-	extern	int	optind;
-	extern	char	*optarg;
 	int	c;
-	reg	double	h, v;
+	double	h, v;
 	double	vs, ve, vi;
 	double	hs, he, hi;
 
