@@ -31,39 +31,39 @@
  *		s*s = 1 / 2(1 + gh/v*v)
  */
 
-#include	<stdio.h>
-#include	<math.h>
-#include	<stdlib.h>
-#include	<unistd.h>
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
+#include <unistd.h>
 
-#define	G	9.80665
+#define G 9.80665
 
-#define	DEGREES(R)	((R) / M_PI * 180.0)
+#define DEGREES(R) ((R) / M_PI * 180.0)
 
-double	compute(), dist();
-double	atof();
-int	getrange();
+double compute(), dist();
+double atof();
+int getrange();
 
-int	eopt;
-int	popt;
-double	pval;
+int eopt;
+int popt;
+double pval;
 
 int main(int argc, char* argv[])
 {
-	int	c;
-	double	h, v;
-	double	vs, ve, vi;
-	double	hs, he, hi;
+	int c;
+	double h, v;
+	double vs, ve, vi;
+	double hs, he, hi;
 
 	while ((c = getopt(argc, argv, "ep:")) != EOF)
 	{
 		switch (c)
 		{
-		case 'p':	/* Check perturbations */
+		case 'p': /* Check perturbations */
 			popt++;
 			pval = atof(optarg);
 			break;
-		case 'e':	/* Check for algebra errors */
+		case 'e': /* Check for algebra errors */
 			eopt++;
 			break;
 		}
@@ -90,7 +90,7 @@ int main(int argc, char* argv[])
 
 int getrange(char* item, double* s, double* e, double* i)
 {
-	char	buf[100];
+	char buf[100];
 
 	for(;;)
 	{
@@ -145,7 +145,7 @@ int getrange(char* item, double* s, double* e, double* i)
 
 double compute(double v, double h)
 {
-	double	temp, s, c, p, d;
+	double temp, s, c, p, d;
 
 	temp = 0.5 / (1.0 + G * h / (v * v));
 
@@ -160,7 +160,7 @@ double compute(double v, double h)
 
 	if (eopt)
 	{
-		double	D;
+		double D;
 		D = dist(p, v, h);
 		if (fabs(D - d) > 1.e-4)
 			printf("Error: D =% -7.5g\n", D);
@@ -168,7 +168,7 @@ double compute(double v, double h)
 
 	if (popt)
 	{
-		double	pert1, pert2;
+		double pert1, pert2;
 		pert1 = d - dist(p * (1. + pval), v, h);
 		pert2 = d - dist(p * (1. - pval), v, h);
 		if (pert1 < 0 || pert2 < 0)
@@ -181,7 +181,7 @@ double compute(double v, double h)
 
 double dist(double p, double v, double h)
 {
-	double	c, s;
+	double c, s;
 
 	s = sin(p);
 	c = cos(p);
