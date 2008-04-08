@@ -31,7 +31,7 @@
  *		s*s = 1 / 2(1 + gh/v*v)
  */
 
-#include <cstdio>
+#include <iostream>
 #include <cmath>
 #include <cstdlib>
 #include <unistd.h>
@@ -80,13 +80,13 @@ int main(int argc, char* argv[])
 		if (!getrange("h", &hs, &he, &hi))
 			break;
 
-		std::putchar('\n');
+		std::cout << '\n';
 
 		for (v = vs ; v < ve ; v += vi)
 			for (h = hs ; h < he ; h += hi)
 				compute(v, h);
 
-		std::putchar('\n');
+		std::cout << '\n';
 	}
 
 	return 0;
@@ -98,10 +98,9 @@ int getrange(char* item, double* s, double* e, double* i)
 	{
 		char buf[100];
 
-		std::fprintf(stderr, "Enter range of %s: start [end [increment]] ",
-			item);
+		std::cerr << "Enter range of "<<item<<": start [end [increment]] ";
 
-		if (!std::fgets(buf, sizeof(buf), stdin))
+		if (!std::cin.getline(buf, sizeof(buf)))
 			return 0;
 
 		switch (std::sscanf(buf, "%lf%lf%lf", s, e, i))
@@ -123,23 +122,23 @@ int getrange(char* item, double* s, double* e, double* i)
 			break;
 
 		default:
-			std::fputs("too many items specified\n", stderr);
+			std::cerr << "too many items specified\n";
 			continue;
 		}
 
 		if (*s == *e)
 		{
-			std::fputs("start = end\n", stderr);
+			std::cerr << "start = end\n";
 			continue;
 		}
 		if (*i == 0.0)
 		{
-			std::fputs("zero increment\n", stderr);
+			std::cerr << "zero increment\n";
 			continue;
 		}
 		if (*s < *e && *i < 0.0 || *s > *e && *i > 0.0)
 		{
-			std::fputs("increment has wrong sign\n", stderr);
+			std::cerr << "increment has wrong sign\n";
 			continue;
 		}
 
