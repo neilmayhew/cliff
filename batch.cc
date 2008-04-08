@@ -38,7 +38,7 @@
 
 #define	G	9.80665
 
-#define	DEGREES( R )	( (R) / M_PI * 180.0 )
+#define	DEGREES(R)	((R) / M_PI * 180.0)
 
 double	compute(), dist();
 double	atof();
@@ -49,7 +49,7 @@ int	popt;
 double	pval;
 
 int
-main( argc , argv )
+main(argc, argv)
 	int	argc;
 	char	*argv[];
 	{
@@ -58,13 +58,13 @@ main( argc , argv )
 	double	vs, ve, vi;
 	double	hs, he, hi;
 
-	while ( (c = getopt( argc , argv , "ep:" )) != EOF )
+	while ((c = getopt(argc, argv, "ep:")) != EOF)
 		{
-		switch ( c )
+		switch (c)
 			{
 		case 'p':	/* Check perturbations */
 			popt++;
-			pval = atof( optarg );
+			pval = atof(optarg);
 			break;
 		case 'e':	/* Check for algebra errors */
 			eopt++;
@@ -74,25 +74,25 @@ main( argc , argv )
 
 	for(;;)
 		{
-		if ( !getrange( "v" , &vs , &ve , &vi ) )
+		if (!getrange("v", &vs, &ve, &vi))
 			break;
-		if ( !getrange( "h" , &hs , &he , &hi ) )
+		if (!getrange("h", &hs, &he, &hi))
 			break;
 
-		putchar( '\n' );
+		putchar('\n');
 
-		for ( v = vs ; v < ve ; v += vi )
-			for ( h = hs ; h < he ; h += hi )
-				compute( v , h );
+		for (v = vs ; v < ve ; v += vi)
+			for (h = hs ; h < he ; h += hi)
+				compute(v, h);
 
-		putchar( '\n' );
+		putchar('\n');
 		}
 
-	exit( 0 );
+	exit(0);
 	}
 
 int
-getrange( item , s , e , i )
+getrange(item, s, e, i)
 	char	*item;
 	double	*s, *e, *i;
 	{
@@ -100,17 +100,17 @@ getrange( item , s , e , i )
 
 	for(;;)
 		{
-		fprintf( stderr, "Enter range of %s: start [end [increment]] ",
-			item );
+		fprintf(stderr, "Enter range of %s: start [end [increment]] ",
+			item);
 
-		if ( !fgets( buf , sizeof(buf) , stdin ) )
-			return( 0 );
+		if (!fgets(buf, sizeof(buf), stdin))
+			return 0;
 
-		switch ( sscanf( buf , "%lf%lf%lf" , s , e , i ) )
+		switch (sscanf(buf, "%lf%lf%lf", s, e, i))
 			{
 		case EOF:
 		case 0:
-			return( 0 );
+			return 0;
 
 		case 1:
 			*e = *s + 0.5;
@@ -125,76 +125,76 @@ getrange( item , s , e , i )
 			break;
 
 		default:
-			fputs( "too many items specified\n" , stderr );
+			fputs("too many items specified\n", stderr);
 			continue;
 			}
 
-		if ( *s == *e )
+		if (*s == *e)
 			{
-			fputs( "start = end\n" , stderr );
+			fputs("start = end\n", stderr);
 			continue;
 			}
-		if ( *i == 0.0 )
+		if (*i == 0.0)
 			{
-			fputs( "zero increment\n" , stderr );
+			fputs("zero increment\n", stderr);
 			continue;
 			}
-		if ( *s < *e && *i < 0.0 || *s > *e && *i > 0.0 )
+		if (*s < *e && *i < 0.0 || *s > *e && *i > 0.0)
 			{
-			fputs( "increment has wrong sign\n" , stderr );
+			fputs("increment has wrong sign\n", stderr);
 			continue;
 			}
 
-		return( 1 );
+		return 1;
 		}
 	}
 
 double
-compute( v , h )
+compute(v, h)
 	double	v, h;
 	{
 	double	temp, s, c, p, d;
 
-	temp = 0.5 / ( 1.0 + G * h / (v * v) );
+	temp = 0.5 / (1.0 + G * h / (v * v));
 
-	s = sqrt( temp );
-	p = asin( s );
+	s = sqrt(temp);
+	p = asin(s);
 
-	c = sqrt( 1.0 - temp );
-	d = v * v * c / ( G * s );
+	c = sqrt(1.0 - temp);
+	d = v * v * c / (G * s);
 
-	printf( "v =% -7.5g  h =% -7.5g  p =% -7.5g  d =% -7.5g\n" ,
-		v , h , DEGREES( p ) , d );
+	printf("v =% -7.5g  h =% -7.5g  p =% -7.5g  d =% -7.5g\n",
+		v, h, DEGREES(p), d);
 
-	if ( eopt )
+	if (eopt)
 		{
 		double	D;
-		D = dist( p , v , h );
-		if ( fabs( D - d ) > 1.e-4 )
-			printf( "Error: D =% -7.5g\n" , D );
+		D = dist(p, v, h);
+		if (fabs(D - d) > 1.e-4)
+			printf("Error: D =% -7.5g\n", D);
 		}
 
-	if ( popt )
+	if (popt)
 		{
 		double	pert1, pert2;
-		pert1 = d - dist( p * (1. + pval) , v , h );
-		pert2 = d - dist( p * (1. - pval) , v , h );
-		if ( pert1 < 0 || pert2 < 0 )
-			printf( "Not maximal: p+ =% -7.5g  p- =% -7.5g\n" ,
-				pert1 , pert2 );
+		pert1 = d - dist(p * (1. + pval), v, h);
+		pert2 = d - dist(p * (1. - pval), v, h);
+		if (pert1 < 0 || pert2 < 0)
+			printf("Not maximal: p+ =% -7.5g  p- =% -7.5g\n",
+				pert1, pert2);
 		}
 
-	return( p );
+	return p;
 	}
 
 double
-dist( p , v , h )
+dist(p, v, h)
 	double	p, v, h;
 	{
 	double	c, s;
 
-	s = sin( p );
-	c = cos( p );
+	s = sin(p);
+	c = cos(p);
 
-	return( v * v * c / G * ( s + sqrt( s * s + 2. * G * h / v / v ) ) );
+	return v * v * c / G * (s + sqrt(s * s + 2. * G * h / v / v));
 	}
