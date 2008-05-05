@@ -1,3 +1,10 @@
+
+#	autoconf file for the cliff visualizer
+#
+#	Neil Mayhew - 2008-05-04
+#
+#	$Id: configure.ac,v 1.2 2008-05-05 03:49:42 mayhewn Exp $
+
 AC_INIT([cliff], [0.1], [neil_mayhew@users.sourceforge.net])
 
 AM_INIT_AUTOMAKE(foreign)
