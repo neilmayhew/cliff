@@ -3,7 +3,7 @@
 #
 #	Neil Mayhew - 2008-05-04
 #
-#	$Id: Makefile.am,v 1.3 2008-05-06 04:49:17 mayhewn Exp $
+#	$Id: Makefile.am,v 1.4 2008-05-06 13:22:04 mayhewn Exp $
 
 noinst_PROGRAMS = cliff batch
 
@@ -12,8 +12,8 @@ cliff_SOURCES = \
 	cliffwindow.h cliffwindow.cc \
 	main.cc
 
-cliff_INCLUDES = @GTKMM_CFLAGS@
-cliff_LIBS = @GTKMM_LIBS@
+cliff_CPPFLAGS = @GTKMM_CFLAGS@
+cliff_LDFLAGS = @GTKMM_LIBS@
 
 batch_SOURCES = batch.cc
 
