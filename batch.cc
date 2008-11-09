@@ -43,7 +43,7 @@ inline double r2d(double r)
 	return r / M_PI * 180.0;
 }
 
-int getrange(char* item, double* s, double* e, double* i);
+int getrange(const char* item, double* s, double* e, double* i);
 double compute(double v, double h);
 double dist(double p, double v, double h);
 
@@ -92,7 +92,7 @@ int main(int argc, char* argv[])
 	return 0;
 }
 
-int getrange(char* item, double* s, double* e, double* i)
+int getrange(const char* item, double* s, double* e, double* i)
 {
 	for(;;)
 	{
