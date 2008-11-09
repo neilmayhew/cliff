@@ -5,7 +5,7 @@
  *
  *	Neil Mayhew - 2007-12-08
  *
- *	$Id: cliffwidget.cc,v 1.1 2008-05-05 03:44:25 mayhewn Exp $
+ *	$Id: cliffwidget.cc,v 1.2 2008-11-09 03:38:04 mayhewn Exp $
  */
 
 #include "cliffwidget.h"
@@ -101,8 +101,6 @@ bool CliffWidget::on_expose_event(GdkEventExpose* event)
 	max_y = allocation.get_height() / scale + min_y;
 
 	// Horizontals & verticals
-	cr->move_to(0.0, -max_y);
-	cr->line_to(max_x, -max_y);
 	cr->move_to(0.0, 0.0);
 	cr->line_to(max_x, 0.0);
 	cr->move_to(0.0, height);
