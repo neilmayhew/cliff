@@ -5,7 +5,7 @@
  *
  *	Neil Mayhew - 2009-03-13
  *
- *	$Id: cliffimg.cc,v 1.3 2009-03-14 23:39:51 mayhewn Exp $
+ *	$Id: cliffimg.cc,v 1.4 2009-03-14 23:44:52 mayhewn Exp $
  */
 
 #include "cliffcairo.h"
@@ -46,6 +46,8 @@ int main(int argc, char* argv[])
 		surface = Cairo::PdfSurface::create(filename, size_x, size_y);
 	else if (suffix == "svg")
 		surface = Cairo::SvgSurface::create(filename, size_x, size_y);
+	else if (suffix == "ps")
+		surface = Cairo::PsSurface::create(filename, size_x, size_y);
 	else if (suffix == "png")
 		surface = Cairo::ImageSurface::create(Cairo::FORMAT_RGB24, size_x, size_y);
 	else
