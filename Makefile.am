@@ -3,9 +3,9 @@
 #
 #	Neil Mayhew - 2008-05-04
 #
-#	$Id: Makefile.am,v 1.7 2009-03-14 02:58:18 mayhewn Exp $
+#	$Id: Makefile.am,v 1.8 2009-03-14 23:39:20 mayhewn Exp $
 
-noinst_PROGRAMS = cliff cliffsvg batch
+noinst_PROGRAMS = cliff cliffimg batch
 
 cliff_SOURCES = \
 	cliffcairo.h  cliffcairo.cc \
@@ -16,12 +16,12 @@ cliff_SOURCES = \
 cliff_CPPFLAGS = @GTKMM_CFLAGS@
 cliff_LDFLAGS  = @GTKMM_LIBS@
 
-cliffsvg_SOURCES = \
+cliffimg_SOURCES = \
 	cliffcairo.h cliffcairo.cc \
-	cliffsvg.cc
+	cliffimg.cc
 
-cliffsvg_CPPFLAGS = @GTKMM_CFLAGS@
-cliffsvg_LDFLAGS  = @GTKMM_LIBS@
+cliffimg_CPPFLAGS = @GTKMM_CFLAGS@
+cliffimg_LDFLAGS  = @GTKMM_LIBS@
 
 batch_SOURCES = batch.cc
 

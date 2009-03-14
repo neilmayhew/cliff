@@ -1,5 +1,5 @@
 /*
- *	cliffsvg.cc
+ *	cliffimg.cc
  *
  *	Render a cliff diagram to one of several image formats
  *
