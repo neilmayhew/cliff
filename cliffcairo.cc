@@ -5,7 +5,7 @@
  *
  *	Neil Mayhew - 2007-12-08
  *
- *	$Id: cliffcairo.cc,v 1.1 2009-03-14 02:23:10 mayhewn Exp $
+ *	$Id: cliffcairo.cc,v 1.2 2009-03-14 02:56:33 mayhewn Exp $
  */
 
 #include "cliffcairo.h"
@@ -71,6 +71,11 @@ void render(
 	double max_y = upper;
 	double min_x = 0;
 	double max_x = distance(angle, velocity, -min_y);
+
+	if (size_x == 0)
+		size_x = max_x - min_x;
+	if (size_y == 0)
+		size_y = max_y - min_y;
 
 	double scale_x = size_x / (max_x - min_x);
 	double scale_y = size_y / (max_y - min_y);
