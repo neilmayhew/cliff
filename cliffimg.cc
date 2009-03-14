@@ -5,7 +5,7 @@
  *
  *	Neil Mayhew - 2009-03-13
  *
- *	$Id: cliffimg.cc,v 1.2 2009-03-14 05:09:59 mayhewn Exp $
+ *	$Id: cliffimg.cc,v 1.3 2009-03-14 23:39:51 mayhewn Exp $
  */
 
 #include "cliffcairo.h"
@@ -32,10 +32,13 @@ int main(int argc, char* argv[])
 	double velocity = 20.0;
 	double height   = 50.0;
 
-	std::string suffix;
+	if (filename.rfind('.') == filename.npos)
+	{
+		std::cerr << "Missing filename suffix: " << filename << "\n";
+		return 2;
+	}
 	
-	if (filename.rfind('.') != filename.npos)
-		suffix = filename.substr(filename.rfind('.') + 1);
+	std::string suffix = filename.substr(filename.rfind('.') + 1);
 
 	Cairo::RefPtr<Cairo::Surface> surface;
 
@@ -47,7 +50,7 @@ int main(int argc, char* argv[])
 		surface = Cairo::ImageSurface::create(Cairo::FORMAT_RGB24, size_x, size_y);
 	else
 	{
-		std::cerr << "Unknown or missing file suffix: " << filename << "\n";
+		std::cerr << "Unknown filename suffix: " << suffix << "\n";
 		return 2;
 	}
 
