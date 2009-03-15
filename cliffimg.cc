@@ -5,7 +5,7 @@
  *
  *	Neil Mayhew - 2009-03-13
  *
- *	$Id: cliffimg.cc,v 1.4 2009-03-14 23:44:52 mayhewn Exp $
+ *	$Id: cliffimg.cc,v 1.5 2009-03-15 22:05:16 mayhewn Exp $
  */
 
 #include "cliffcairo.h"
@@ -60,9 +60,8 @@ int main(int argc, char* argv[])
 
 	if (suffix == "png")
 	{
-	    context->rectangle(0, 0, size_x, size_y);
 	    context->set_source_rgb(1.0, 1.0, 1.0);
-	    context->fill();
+	    context->paint();
 	}
 
 	render(context, velocity, height, size_x, size_y);
