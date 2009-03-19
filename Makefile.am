@@ -3,7 +3,7 @@
 #
 #	Neil Mayhew - 2008-05-04
 #
-#	$Id: Makefile.am,v 1.8 2009-03-14 23:39:20 mayhewn Exp $
+#	$Id: Makefile.am,v 1.9 2009-03-19 01:45:21 mayhewn Exp $
 
 noinst_PROGRAMS = cliff cliffimg batch
 
@@ -20,8 +20,8 @@ cliffimg_SOURCES = \
 	cliffcairo.h cliffcairo.cc \
 	cliffimg.cc
 
-cliffimg_CPPFLAGS = @GTKMM_CFLAGS@
-cliffimg_LDFLAGS  = @GTKMM_LIBS@
+cliffimg_CPPFLAGS = @CAIROMM_CFLAGS@
+cliffimg_LDFLAGS  = @CAIROMM_LIBS@
 
 batch_SOURCES = batch.cc
 
