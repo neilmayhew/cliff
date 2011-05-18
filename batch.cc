@@ -34,6 +34,7 @@
 #include <iostream>
 #include <cmath>
 #include <cstdlib>
+#include <cstdio>
 #include <unistd.h>
 
 const double g = 9.80665;
