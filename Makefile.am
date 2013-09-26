@@ -26,4 +26,5 @@ cliffimg_LDADD    = @CAIROMM_LIBS@
 batch_SOURCES = batch.cc
 
 batch_test: $(top_builddir)/batch $(top_srcdir)/test-data.txt
-	$(top_builddir)/batch -ep 1e-3 <$(top_srcdir)/test-data.txt
+	$(top_builddir)/batch -ep 1e-3 -b <$(top_srcdir)/test-data.txt >$(top_builddir)/batch.out
+	cmp $(top_srcdir)/test-output.txt $(top_builddir)/batch.out

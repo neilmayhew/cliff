@@ -51,12 +51,13 @@ double dist(double p, double v, double h);
 int eopt;
 int popt;
 double pval;
+int bopt;
 
 int main(int argc, char* argv[])
 {
 	int c;
 
-	while ((c = getopt(argc, argv, "ep:")) != -1)
+	while ((c = getopt(argc, argv, "ep:b")) != -1)
 	{
 		switch (c)
 		{
@@ -66,6 +67,9 @@ int main(int argc, char* argv[])
 			break;
 		case 'e': /* Check for algebra errors */
 			eopt++;
+			break;
+		case 'b': /* Batch mode - no prompts */
+			bopt++;
 			break;
 		}
 	}
@@ -81,13 +85,15 @@ int main(int argc, char* argv[])
 		if (!getrange("h", &hs, &he, &hi))
 			break;
 
-		std::cout << '\n';
+		if (!bopt)
+			std::cout << '\n';
 
 		for (v = vs ; v < ve ; v += vi)
 			for (h = hs ; h < he ; h += hi)
 				compute(v, h);
 
-		std::cout << '\n';
+		if (!bopt)
+			std::cout << '\n';
 	}
 
 	return 0;
@@ -99,7 +105,8 @@ int getrange(const char* item, double* s, double* e, double* i)
 	{
 		char buf[100];
 
-		std::cerr << "Enter range of "<<item<<": start [end [increment]] ";
+		if (!bopt)
+			std::cerr << "Enter range of "<<item<<": start [end [increment]] ";
 
 		if (!std::cin.getline(buf, sizeof(buf)))
 			return 0;
