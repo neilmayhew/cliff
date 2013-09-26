@@ -14,14 +14,14 @@ cliff_SOURCES = \
 	main.cc
 
 cliff_CPPFLAGS = @GTKMM_CFLAGS@
-cliff_LDFLAGS  = @GTKMM_LIBS@
+cliff_LDADD    = @GTKMM_LIBS@
 
 cliffimg_SOURCES = \
 	cliffcairo.h cliffcairo.cc \
 	cliffimg.cc
 
 cliffimg_CPPFLAGS = @CAIROMM_CFLAGS@
-cliffimg_LDFLAGS  = @CAIROMM_LIBS@
+cliffimg_LDADD    = @CAIROMM_LIBS@
 
 batch_SOURCES = batch.cc
 
