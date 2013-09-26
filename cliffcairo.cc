@@ -105,18 +105,18 @@ void render(
 	for (double pval = spread; pval > 0.001; pval -= step)
 	{
 		trajectory(cr, velocity, angle - pval, max_x, min_y);
-		cr->set_source_rgb(1.0, 0.0, 0.0);
+		cr->set_source_rgb(1.0, 0.25, 0.25);
 		cr->set_line_width(1.0 / scale);
 		cr->stroke();
 		trajectory(cr, velocity, angle + pval, max_x, min_y);
-		cr->set_source_rgb(0.0, 1.0, 0.0);
+		cr->set_source_rgb(0.25, 0.25, 1.0);
 		cr->set_line_width(1.0 / scale);
 		cr->stroke();
 	}
 
 	// Optimum
 	trajectory(cr, velocity, angle, max_x, min_y);
-	cr->set_source_rgb(0.0, 0.0, 1.0);
+	cr->set_source_rgb(0.0, 1.0, 0.0);
 	cr->set_line_width(1.0 / scale); // One pixel
 	cr->stroke();
 
