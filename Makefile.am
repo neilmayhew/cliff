@@ -2,10 +2,8 @@
 #	automake file for the cliff visualizer
 #
 #	Neil Mayhew - 2008-05-04
-#
-#	$Id: Makefile.am,v 1.9 2009-03-19 01:45:21 mayhewn Exp $
 
-noinst_PROGRAMS = cliff cliffimg batch
+bin_PROGRAMS = cliff cliffimg batch
 
 cliff_SOURCES = \
 	cliffcairo.h  cliffcairo.cc \
@@ -27,6 +25,6 @@ batch_SOURCES = batch.cc
 
 batch_test: $(top_builddir)/batch $(top_srcdir)/test-data.txt
 	$(top_builddir)/batch -ep 1e-3 -b <$(top_srcdir)/test-data.txt >$(top_builddir)/batch.out
-	cmp $(top_srcdir)/test-output.txt $(top_builddir)/batch.out
+	diff $(top_srcdir)/test-output.txt $(top_builddir)/batch.out
 
 check: batch_test
