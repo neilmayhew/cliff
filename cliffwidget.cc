@@ -11,7 +11,7 @@
 #include "cliffwidget.h"
 #include "cliffcairo.h"
 
-#include <gdkmm/drawable.h>
+#include <gdkmm/window.h>
 #include <gdkmm/general.h>
 
 CliffWidget::CliffWidget()
