@@ -29,15 +29,15 @@ int main(int argc, char* argv[])
 	int size_x = 500;
 	int size_y = 500;
 
-	double velocity = 20.0;
-	double height   = 50.0;
+	double velocity =  20.0;
+	double height   = -50.0;
 
 	if (filename.rfind('.') == filename.npos)
 	{
 		std::cerr << "Missing filename suffix: " << filename << "\n";
 		return 2;
 	}
-	
+
 	std::string suffix = filename.substr(filename.rfind('.') + 1);
 
 	Cairo::RefPtr<Cairo::Surface> surface;

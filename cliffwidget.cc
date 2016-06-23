@@ -29,8 +29,8 @@ bool CliffWidget::on_expose_event(GdkEventExpose* event)
 
 	Cairo::RefPtr<Cairo::Context> cr = window->create_cairo_context();
 
-	double velocity = 20.0;      // m/s
-	double height = 50.0;        // m
+	double velocity =  20.0;  // m/s
+	double height   = -50.0;  // m
 	double size_x = (double)allocation.get_width();
 	double size_y = (double)allocation.get_height();
 

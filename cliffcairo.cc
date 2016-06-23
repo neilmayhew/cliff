@@ -29,12 +29,12 @@ double distance(double a, double v, double h)
 	double c = std::cos(a);
 	double s = std::sin(a);
 
-	return v * v * c / g * (s + std::sqrt(s * s + 2.0 * g * h / (v * v)));
+	return v * v * c / g * (s + std::sqrt(s * s - 2.0 * g * h / (v * v)));
 }
 
 double optimum(double v, double h)
 {
-	return std::asin(v * std::sqrt(0.5 / (v * v + g * h)));
+	return std::asin(v * std::sqrt(0.5 / (v * v - g * h)));
 }
 
 void trajectory(Cairo::RefPtr<Cairo::Context> cr,
@@ -51,7 +51,7 @@ void trajectory(Cairo::RefPtr<Cairo::Context> cr,
 	// Endpoints
 	double x0 = 0.0;
 	double y0 = 0.0;
-	double x1 = distance(a, v, -min_y);
+	double x1 = distance(a, v, min_y);
 	double y1 = min_y;
 
 	// Control point for quadratic Bezier
@@ -75,10 +75,10 @@ void render(
 	double width = distance(angle, velocity, height);
 	double upper = ascent(M_PI / 4, velocity);
 	
-	double min_y = -height * 1.5;
+	double min_y = height * 1.5;
 	double max_y = upper;
 	double min_x = 0;
-	double max_x = distance(angle, velocity, -min_y);
+	double max_x = distance(angle, velocity, min_y);
 
 	if (size_x == 0)
 		size_x = max_x - min_x;
@@ -99,8 +99,8 @@ void render(
 	// Horizontals & verticals
 	cr->move_to(0.0, 0.0);
 	cr->line_to(max_x, 0.0);
-	cr->move_to(0.0, height);
-	cr->line_to(max_x, height);
+	cr->move_to(0.0, -height);
+	cr->line_to(max_x, -height);
 	cr->move_to(width, -max_y);
 	cr->line_to(width, -min_y);
 	cr->set_source_rgb(0.5, 0.5, 0.5);
@@ -131,7 +131,7 @@ void render(
 #if 0
 	// Chord
 	cr->move_to(0, 0);
-	cr->line_to(width, height);
+	cr->line_to(width, -height);
 	cr->set_source_rgb(0.25, 0.25, 0.867);
 	cr->stroke();
 #endif
