@@ -43,21 +43,29 @@ void trajectory(Cairo::RefPtr<Cairo::Context> cr,
 	double vx = v * std::cos(a);
 	double vy = v * std::sin(a);
 
-	double x = 0.0;
-	double y = 0.0;
-	double t = 0.0;
+	// Coefficients of quadratic function
+	double aa = -g/(2*vx*vx);
+	double bb = vy/vx;
+	double cc = 0;
 
-	cr->move_to(x, -y);
+	// Endpoints
+	double x0 = 0.0;
+	double y0 = 0.0;
+	double x1 = distance(a, v, -min_y);
+	double y1 = min_y;
 
-	while (x <= max_x && y >= min_y)
-	{
-		t += (2.0 / v); // About every 2m
-		x = vx * t;
-		y = vy * t - 0.5 * g * t * t;
-		cr->line_to(x, -y);
-	}
+	// Control point for quadratic Bezier
+	double xc = (x0 + x1)/2;
+	double yc = aa*x0*x1 + bb*xc + cc;
+
+	// Cubic Bezier using quadratic control point
+	cr->move_to(x0, -y0);
+	cr->curve_to(
+		(x0 + 2*xc)/3, -(y0 + 2*yc)/3,
+		(2*xc + x1)/3, -(2*yc + y1)/3,
+		x1, -y1);
 }
-	
+
 void render(
 	Cairo::RefPtr<Cairo::Context> cr,
 	double velocity, double height, // m/s, m
