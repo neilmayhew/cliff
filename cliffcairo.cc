@@ -38,32 +38,32 @@ double optimum(double v, double h)
 }
 
 void trajectory(Cairo::RefPtr<Cairo::Context> cr,
-	double v, double a, double max_x, double min_y)
+	double v, double angle, double max_x, double min_y)
 {
-	double vx = v * std::cos(a);
-	double vy = v * std::sin(a);
+	double vx = v * std::cos(angle);
+	double vy = v * std::sin(angle);
 
 	// Coefficients of quadratic function
-	double aa = -g/(2*vx*vx);
-	double bb = vy/vx;
-	double cc = 0;
+	double a = -g/(2*vx*vx);
+	double b = vy/vx;
+	double c = 0;
 
 	// Endpoints
-	double x0 = 0.0;
-	double y0 = 0.0;
-	double x1 = distance(a, v, min_y);
-	double y1 = min_y;
+	double px = 0.0;
+	double py = 0.0;
+	double qx = distance(angle, v, min_y);
+	double qy = min_y;
 
 	// Control point for quadratic Bezier
-	double xc = (x0 + x1)/2;
-	double yc = aa*x0*x1 + bb*xc + cc;
+	double dx = (px + qx)/2;
+	double dy = a*px*qx + b*dx + c;
 
 	// Cubic Bezier using quadratic control point
-	cr->move_to(x0, -y0);
+	cr->move_to(px, -py);
 	cr->curve_to(
-		(x0 + 2*xc)/3, -(y0 + 2*yc)/3,
-		(2*xc + x1)/3, -(2*yc + y1)/3,
-		x1, -y1);
+		(px + 2*dx)/3, -(py + 2*dy)/3,
+		(2*dx + qx)/3, -(2*dy + qy)/3,
+		qx, -qy);
 }
 
 void render(
