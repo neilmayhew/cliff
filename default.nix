@@ -1,11 +1,8 @@
-{ nixpkgs ? import <nixpkgs> {} }:
-
-with nixpkgs;
-with pkgs;
+{ stdenv, lib, pkgconfig, autoreconfHook, gnome3 }:
 
 stdenv.mkDerivation {
   name = "cliff";
-  src = ./.;
+  src = lib.cleanSource ./.;
   buildInputs = [ pkgconfig autoreconfHook gnome3.gtkmm ];
   doCheck = true;
 }
