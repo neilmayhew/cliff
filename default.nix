@@ -1,8 +1,8 @@
-{ stdenv, lib, pkgconfig, autoreconfHook, gnome3 }:
+{ stdenv, lib, pkg-config, autoreconfHook, gtkmm3 }:
 
 stdenv.mkDerivation {
   name = "cliff";
   src = lib.cleanSource ./.;
-  buildInputs = [ pkgconfig autoreconfHook gnome3.gtkmm ];
+  buildInputs = [ pkg-config autoreconfHook gtkmm3 ];
   doCheck = true;
 }
