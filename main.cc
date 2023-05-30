@@ -13,10 +13,10 @@
 
 int main(int argc, char *argv[])
 {
-  Gtk::Main kit(argc, argv);
+	Gtk::Main kit(argc, argv);
 
-  CliffWindow window;
-  Gtk::Main::run(window);
+	CliffWindow window;
+	Gtk::Main::run(window);
 
-  return 0;
+	return 0;
 }

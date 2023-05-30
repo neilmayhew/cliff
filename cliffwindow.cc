@@ -17,13 +17,13 @@ CliffWindow::CliffWindow() :
 	set_default_size(600, 650);
 
 	add(m_VBox);
-	
+
 	m_VBox.set_spacing(6);
 	m_VBox.set_border_width(6);
 
 	m_VBox.pack_start(m_Frame, Gtk::PACK_EXPAND_WIDGET);
 	m_VBox.pack_start(m_ButtonBox, Gtk::PACK_SHRINK);
-	
+
 	m_Frame.add(m_CliffWidget);
 	m_Frame.set_shadow_type(Gtk::SHADOW_IN);
 

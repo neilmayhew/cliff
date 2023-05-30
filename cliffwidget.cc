@@ -21,16 +21,16 @@ CliffWidget::CliffWidget()
 
 bool CliffWidget::on_draw(const Cairo::RefPtr<Cairo::Context>& cr)
 {
-    Gtk::Allocation allocation = get_allocation();
+	Gtk::Allocation allocation = get_allocation();
 
 	double velocity =  20.0;  // m/s
 	double height   = -50.0;  // m
 	double size_x = (double)allocation.get_width();
 	double size_y = (double)allocation.get_height();
 
-    cr->rectangle(0, 0, size_x, size_y);
-    cr->set_source_rgb(1.0, 1.0, 1.0);
-    cr->fill();
+	cr->rectangle(0, 0, size_x, size_y);
+	cr->set_source_rgb(1.0, 1.0, 1.0);
+	cr->fill();
 
 	render(cr, velocity, height, size_x, size_y);
 

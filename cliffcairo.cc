@@ -74,7 +74,7 @@ void render(
 	double angle = optimum(velocity, height); // radians
 	double width = distance(angle, velocity, height);
 	double upper = ascent(M_PI / 4, velocity);
-	
+
 	double min_y = height * 1.5;
 	double max_y = upper;
 	double min_x = 0;
@@ -88,11 +88,11 @@ void render(
 	double scale_x = size_x / (max_x - min_x);
 	double scale_y = size_y / (max_y - min_y);
 	double scale = std::min(scale_x, scale_y);
-	
+
 	cr->translate(0, size_y);
 	cr->scale(scale, scale);
 	cr->translate(0, min_y);
-	
+
 	max_x = size_x / scale;
 	max_y = size_y / scale + min_y;
 
