@@ -19,15 +19,9 @@ CliffWidget::CliffWidget()
 	set_size_request(100, 100);
 }
 
-bool CliffWidget::on_expose_event(GdkEventExpose* event)
+bool CliffWidget::on_draw(const Cairo::RefPtr<Cairo::Context>& cr)
 {
-	Glib::RefPtr<Gdk::Window> window = get_window();
     Gtk::Allocation allocation = get_allocation();
-
-	if (!window)
-		return true;
-
-	Cairo::RefPtr<Cairo::Context> cr = window->create_cairo_context();
 
 	double velocity =  20.0;  // m/s
 	double height   = -50.0;  // m
