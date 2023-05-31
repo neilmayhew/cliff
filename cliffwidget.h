@@ -19,7 +19,6 @@ public:
 	CliffWidget();
 protected:
 
-	bool on_expose_event(GdkEventExpose*);
 	bool on_draw(const Cairo::RefPtr<Cairo::Context>& cr);
 };
 
