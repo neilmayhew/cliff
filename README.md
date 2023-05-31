@@ -22,7 +22,7 @@ A picture is worth a thousand words:
 
 ![Example trajectories](test-output/cliff.svg)
 
-The blue curve is the optimum one, and we can see that it starts off at an angle noticeably less than 45°. The green curves all start off at a greater angle, and would travel further on flat ground, but soon drop away below the blue curve. In contrast, the red curves start off at a lesser angle, and stay below the blue curve until after the desired height has been reached.
+The green curve is the optimum one, and we can see that it starts off at an angle noticeably less than 45°. The blue curves all start off at a greater angle, and would travel further on flat ground, but soon drop away below the green curve. In contrast, the red curves start off at a lesser angle, and stay below the green curve until after the desired height has been reached.
 
 ### Algebraic Answer
 
